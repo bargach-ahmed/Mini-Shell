@@ -1,6 +1,6 @@
-# Minishell Project
+# OrbitShell Project
 
-This is a custom Unix mini-shell built in C from scratch. It features a standard REPL architecture, dynamic memory management, POSIX system calls for process execution, built-in commands (`exit`, `cd`, `env`), and a futuristic aesthetic prompt.
+This is a custom Unix mini-shell built in C. It features a highly modular, multi-file architecture (inspired by educational systems programming projects), dynamic memory management, POSIX system calls for process execution, built-in commands (`exit`, `cd`, `env`), and a futuristic aesthetic prompt.
 
 ## Prerequisites (For Windows Users)
 
@@ -26,10 +26,9 @@ sudo apt install build-essential
 
 ## Compilation
 
-Navigate to the project directory within your WSL terminal. You can access your Windows `C:` drive from WSL under `/mnt/c/`.
-For example, to get to this project directory from WSL:
+Navigate to the project directory in Windows PowerShell, and then type `wsl` to switch to your Ubuntu terminal:
 ```bash
-cd /mnt/c/Users/hp/OneDrive/Documents/DSE/S2/"progarmmation system"/"Mini Shell"
+wsl
 ```
 
 Once in the project directory, use `make` to compile the shell:
@@ -47,21 +46,21 @@ Start the shell by running the executable:
 ```
 
 You should see the futuristic prompt with your current working directory:
-`AntigravityShell:/your/current/path$ `
+`OrbitShell:/your/current/path$ `
 
 ### Available Commands
 You can run any standard Unix commands available on your system (e.g., `ls`, `pwd`, `cat`, `echo`). 
 Example:
 ```bash
-Shell:/...$ ls -l
-Shell:/...$ echo "Hello World!"
+OrbitShell:/...$ ls -l
+OrbitShell:/...$ echo "Hello World!"
 ```
 
 ### Built-in Commands
 The shell also includes the following built-in commands:
 - **`cd [directory]`**: Changes the current working directory.
 - **`env`**: Prints all environment variables.
-- **`exit`**: Gracefully terminates the shell and frees all allocated memory. Alternatively, you can use `Ctrl+D` (EOF) to exit.
+- **`exit`**: Gracefully terminates the shell and frees all allocated memory, triggering the custom **"Breaking Orbit"** spaceship launch animation. Alternatively, you can use `Ctrl+D` (EOF) to exit.
 
 ## Cleaning Up
 To remove the compiled executable, run:
