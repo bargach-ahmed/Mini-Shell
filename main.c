@@ -16,7 +16,7 @@ void print_prompt(void)
     char cwd[1024];
 
     if (Getcwd(cwd, sizeof(cwd)) != NULL) {
-        printf("%s%sOrbitShell%s %s%s%s%s$ ",
+        printf("%s%s🪐 OrbitShell 🪐%s %s%s%s%s $> ",
                COLOR_BOLD, COLOR_CYAN, COLOR_RESET,
                COLOR_BOLD, COLOR_MAGENTA, cwd, COLOR_RESET);
     }
@@ -122,6 +122,11 @@ int main(void)
     char *line;
     char **args;
     int status = 1;
+
+    /* Print the banner if in interactive mode */
+    if (isatty(fileno(stdin))) {
+        print_banner();
+    }
 
     /* REPL loop */
     do {

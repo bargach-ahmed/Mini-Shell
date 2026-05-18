@@ -47,5 +47,6 @@ char *Getcwd(char *buf, size_t size);
 /* Aesthetic prototypes */
 void print_prompt(void);
 void orbitshell_shutdown(void);
+void print_banner(void);
 
 #endif /* ORBITSHELL_H */
