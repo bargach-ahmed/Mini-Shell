@@ -53,8 +53,8 @@ You should see the futuristic prompt with your current working directory:
 You can run any standard Unix commands available on your system (e.g., `ls`, `pwd`, `cat`, `echo`). 
 Example:
 ```bash
-AntigravityShell:/...$ ls -l
-AntigravityShell:/...$ echo "Hello World!"
+Shell:/...$ ls -l
+Shell:/...$ echo "Hello World!"
 ```
 
 ### Built-in Commands
