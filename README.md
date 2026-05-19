@@ -15,8 +15,10 @@ OrbitShell is an educational systems programming project designed to strip down 
 * **Strict C89 Compliance**: Compiled using `-std=gnu89` with rigorous compilation flags (`-Wall -Wextra -Werror -pedantic`).
 * **Zero Memory Leaks**: Thoroughly managed dynamic memory allocation via custom wrappers. Input lines and token arrays scale infinitely without arbitrary buffer limits.
 * **POSIX Process Execution**: Executes system commands seamlessly via robust `Fork()`, `Execvp()`, and `Wait()` wrapper functions that safely catch kernel errors.
+* **Signal Handling**: `Ctrl+C` returns the parent shell to a fresh prompt while still interrupting foreground child processes.
+* **I/O Redirection & Pipelines**: Supports `<`, `>`, `>>`, and `|` for everyday command composition.
 * **Custom Built-ins**:
-  * `cd`: Directly alters the parent process's environment.
+  * `cd`: Directly alters the parent process's environment, including `cd`, `cd ~`, `cd -`, `PWD`, and `OLDPWD`.
   * `env`: Prints the global environment array.
   * `exit`: Gracefully frees all memory and triggers a custom **"Breaking Orbit..."** loading animation before shutting down.
 
@@ -57,6 +59,10 @@ OrbitShell $> ls -la
 OrbitShell $> pwd
 OrbitShell $> echo "Hello from OrbitShell!"
 OrbitShell $> cd /tmp
+OrbitShell $> cd -
+OrbitShell $> echo hello > output.txt
+OrbitShell $> cat < output.txt
+OrbitShell $> echo hello | wc -w
 OrbitShell $> env
 ```
 

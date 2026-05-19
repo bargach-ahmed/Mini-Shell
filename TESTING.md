@@ -43,6 +43,17 @@ Unlike `ls` or `pwd`, `cd` is a built-in command that we programmed in `builtins
   cd /tmp
   ```
 
+* **Go to your home directory:**
+  ```bash
+  cd
+  cd ~
+  ```
+
+* **Jump back to the previous directory:**
+  ```bash
+  cd -
+  ```
+
 * **Navigate to the Windows C: drive (WSL only):**
   ```bash
   cd /mnt/c
@@ -60,7 +71,46 @@ This prints out all the background variables loaded into your Linux session by i
 
 ---
 
-## 4. Robust Error Handling
+## 4. Redirection and Pipelines
+OrbitShell can redirect standard input/output and connect commands with pipes.
+
+* **Write output to a file:**
+  ```bash
+  echo hello > output.txt
+  cat output.txt
+  ```
+
+* **Append output to a file:**
+  ```bash
+  echo again >> output.txt
+  cat output.txt
+  ```
+
+* **Read command input from a file:**
+  ```bash
+  wc -w < output.txt
+  ```
+
+* **Pipe one command into another:**
+  ```bash
+  echo hello | wc -w
+  ```
+
+---
+
+## 5. Signal Handling
+OrbitShell keeps the parent shell alive when you press `Ctrl+C`.
+
+* **Interrupt a long-running child process:**
+  ```bash
+  sleep 10
+  ```
+  Press `Ctrl+C`.
+  *(Expected behavior: `sleep` stops and OrbitShell gives you a fresh prompt.)*
+
+---
+
+## 6. Robust Error Handling
 A good shell catches bad input without crashing. We built custom wrappers in `utils.c` to make sure of this.
 
 * **Type a command that doesn't exist:**
@@ -69,15 +119,15 @@ A good shell catches bad input without crashing. We built custom wrappers in `ut
   ```
   *(Expected behavior: It prints an error message like "OrbitShell: No such file or directory" and gives you the prompt back. It will NOT crash!)*
 
-* **Try `cd` without an argument:**
+* **Try changing to an invalid directory:**
   ```bash
-  cd
+  cd /this/path/does/not/exist
   ```
-  *(Expected behavior: It gracefully prints "minishell: expected argument to cd".)*
+  *(Expected behavior: It gracefully prints a `minishell cd` error and gives you the prompt back.)*
 
 ---
 
-## 5. The "Breaking Orbit" Custom Exit Animation
+## 7. The "Breaking Orbit" Custom Exit Animation
 Test the custom ascii animation we built into `shell_exit`!
 
 * **Exit the shell normally:**

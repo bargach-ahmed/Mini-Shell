@@ -61,13 +61,17 @@ void Wait(int *status)
 {
     pid_t wpid;
 
-    do {
+    while (1) {
         wpid = waitpid(-1, status, WUNTRACED);
         if (wpid == -1) {
-            fprintf(stderr, COLOR_RED "minishell: Waitpid failed\n" COLOR_RESET);
-            break;
+            if (errno == EINTR)
+                continue;
+            perror(COLOR_RED "minishell waitpid" COLOR_RESET);
+            return;
         }
-    } while (!WIFEXITED(*status) && !WIFSIGNALED(*status));
+        if (WIFEXITED(*status) || WIFSIGNALED(*status))
+            return;
+    }
 }
 
 /**
